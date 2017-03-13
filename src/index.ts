@@ -1005,7 +1005,7 @@ function template(string, interpolate) {
   constructor(options?:any) {
     this._path = ''
     this._options = extend({
-      baseUri: 'https://api.eu.yaas.io/hybris/product/v2',
+      baseUri: 'https://api.yaas.io/hybris/product/v2',
       baseUriParameters: {}
     }, options)
   
@@ -1055,10 +1055,14 @@ export module Resources {
   export class Tenant { 
     _client: any; _path: string;
     products:Tenant.TenantProducts;
+    variants:Tenant.TenantVariants;
+    search:Tenant.TenantSearch;
     constructor(client, path) {
       this._client = client
       this._path = path
     this.products = new Tenant.TenantProducts(this._client, this._path + '/products')
+    this.variants = new Tenant.TenantVariants(this._client, this._path + '/variants')
+    this.search = new Tenant.TenantSearch(this._client, this._path + '/search')
     }
   }
   export module Tenant { 
@@ -1130,10 +1134,12 @@ export module Resources {
       export class TenantProductsProductId { 
         _client: any; _path: string;
         media:Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdMedia;
+        variants:Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants;
         constructor(client, path) {
           this._client = client
           this._path = path
         this.media = new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdMedia(this._client, this._path + '/media')
+        this.variants = new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants(this._client, this._path + '/variants')
         }
         /**
          * GET on TenantProductsProductId
@@ -1312,7 +1318,311 @@ export module Resources {
             }
           }
         }
+        // createResource - TenantProductsProductIdVariants
+        export class TenantProductsProductIdVariants { 
+          _client: any; _path: string;
+          constructor(client, path) {
+            this._client = client
+            this._path = path
+          }
+        // createProtoResources - Resource: TenantProductsProductIdVariants
+        variantId(variantId:string) { return new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId(this._client, this._path + template('/{variantId}', extend({}, {variantId:variantId}))) }
+          /**
+           * GET on TenantProductsProductIdVariants
+           */
+          GET(fields?:string, q?:string, pageNumber?:number, pageSize?:number, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+            return Observable.create((observer) => {
+               var options = extend({query:{}, headers: {} }, opts)
+               if (fields !== undefined && fields !== null) options.query['fields']=fields;
+               if (q !== undefined && q !== null) options.query['q']=q;
+               if (pageNumber !== undefined && pageNumber < 1) { observer.error('Parameter \'pageNumber\' outside specified range!'); return;}
+               if (pageNumber !== undefined && pageNumber !== null) options.query['pageNumber']=pageNumber;
+               if (pageSize !== undefined && pageSize < 1) { observer.error('Parameter \'pageSize\' outside specified range!'); return;}
+               if (pageSize !== undefined && pageSize !== null) options.query['pageSize']=pageSize;
+               this._client.request(this._client, 'get', this._path, options)
+                 .use(popsicle.plugins.parse('json'))
+                 .then(response => {
+                     var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                     r["_"+response.status]=response.body; 
+                     observer.next(r);observer.complete()
+              })
+            })
+          }
+          /**
+           * POST on TenantProductsProductIdVariants
+           */
+          POST(body:any /* Implicitly defined schemas not yet supported */, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_201":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_409":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+            return Observable.create((observer) => {
+               var options = extend({query:{}, headers: {} }, opts)
+               options.body=body;
+               this._client.request(this._client, 'post', this._path, options)
+                 .use(popsicle.plugins.parse('json'))
+                 .then(response => {
+                     var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                     r["_"+response.status]=response.body; 
+                     observer.next(r);observer.complete()
+              })
+            })
+          }
+          /**
+           * DELETE on TenantProductsProductIdVariants
+           */
+          DELETE(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_204":any,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+            return Observable.create((observer) => {
+               var options = extend({query:{}, headers: {} }, opts)
+               this._client.request(this._client, 'delete', this._path, options)
+                 .use(popsicle.plugins.parse('json'))
+                 .then(response => {
+                     var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                     r["_"+response.status]=response.body; 
+                     observer.next(r);observer.complete()
+              })
+            })
+          }
+        }
+        export module TenantProductsProductIdVariants { 
+          // createResource - TenantProductsProductIdVariantsVariantId
+          export class TenantProductsProductIdVariantsVariantId { 
+            _client: any; _path: string;
+            media:Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId.TenantProductsProductIdVariantsVariantIdMedia;
+            constructor(client, path) {
+              this._client = client
+              this._path = path
+            this.media = new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId.TenantProductsProductIdVariantsVariantIdMedia(this._client, this._path + '/media')
+            }
+            /**
+             * GET on TenantProductsProductIdVariantsVariantId
+             */
+            GET(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+              return Observable.create((observer) => {
+                 var options = extend({query:{}, headers: {} }, opts)
+                 this._client.request(this._client, 'get', this._path, options)
+                   .use(popsicle.plugins.parse('json'))
+                   .then(response => {
+                       var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                       r["_"+response.status]=response.body; 
+                       observer.next(r);observer.complete()
+                })
+              })
+            }
+            /**
+             * PUT on TenantProductsProductIdVariantsVariantId
+             */
+            PUT(body:any /* Implicitly defined schemas not yet supported */, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_409":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+              return Observable.create((observer) => {
+                 var options = extend({query:{}, headers: {} }, opts)
+                 options.body=body;
+                 this._client.request(this._client, 'put', this._path, options)
+                   .use(popsicle.plugins.parse('json'))
+                   .then(response => {
+                       var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                       r["_"+response.status]=response.body; 
+                       observer.next(r);observer.complete()
+                })
+              })
+            }
+            /**
+             * DELETE on TenantProductsProductIdVariantsVariantId
+             */
+            DELETE(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_204":any,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+              return Observable.create((observer) => {
+                 var options = extend({query:{}, headers: {} }, opts)
+                 this._client.request(this._client, 'delete', this._path, options)
+                   .use(popsicle.plugins.parse('json'))
+                   .then(response => {
+                       var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                       r["_"+response.status]=response.body; 
+                       observer.next(r);observer.complete()
+                })
+              })
+            }
+          }
+          export module TenantProductsProductIdVariantsVariantId { 
+            // createResource - TenantProductsProductIdVariantsVariantIdMedia
+            export class TenantProductsProductIdVariantsVariantIdMedia { 
+              _client: any; _path: string;
+              constructor(client, path) {
+                this._client = client
+                this._path = path
+              }
+            // createProtoResources - Resource: TenantProductsProductIdVariantsVariantIdMedia
+            mediaId(mediaId:string) { return new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId.TenantProductsProductIdVariantsVariantIdMedia.TenantProductsProductIdVariantsVariantIdMediaMediaId(this._client, this._path + template('/{mediaId}', extend({}, {mediaId:mediaId}))) }
+              /**
+               * POST on TenantProductsProductIdVariantsVariantIdMedia
+               */
+              POST(body:any /* Implicitly defined schemas not yet supported */, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                return Observable.create((observer) => {
+                   var options = extend({query:{}, headers: {} }, opts)
+                   options.body=body;
+                   this._client.request(this._client, 'post', this._path, options)
+                     .use(popsicle.plugins.parse('json'))
+                     .then(response => {
+                         var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                         r["_"+response.status]=response.body; 
+                         observer.next(r);observer.complete()
+                  })
+                })
+              }
+              /**
+               * GET on TenantProductsProductIdVariantsVariantIdMedia
+               */
+              GET(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                return Observable.create((observer) => {
+                   var options = extend({query:{}, headers: {} }, opts)
+                   this._client.request(this._client, 'get', this._path, options)
+                     .use(popsicle.plugins.parse('json'))
+                     .then(response => {
+                         var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                         r["_"+response.status]=response.body; 
+                         observer.next(r);observer.complete()
+                  })
+                })
+              }
+            }
+            export module TenantProductsProductIdVariantsVariantIdMedia { 
+              // createResource - TenantProductsProductIdVariantsVariantIdMediaMediaId
+              export class TenantProductsProductIdVariantsVariantIdMediaMediaId { 
+                _client: any; _path: string;
+                commit:Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId.TenantProductsProductIdVariantsVariantIdMedia.TenantProductsProductIdVariantsVariantIdMediaMediaId.TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit;
+                constructor(client, path) {
+                  this._client = client
+                  this._path = path
+                this.commit = new Tenant.TenantProducts.TenantProductsProductId.TenantProductsProductIdVariants.TenantProductsProductIdVariantsVariantId.TenantProductsProductIdVariantsVariantIdMedia.TenantProductsProductIdVariantsVariantIdMediaMediaId.TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit(this._client, this._path + '/commit')
+                }
+                /**
+                 * GET on TenantProductsProductIdVariantsVariantIdMediaMediaId
+                 */
+                GET(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                  return Observable.create((observer) => {
+                     var options = extend({query:{}, headers: {} }, opts)
+                     this._client.request(this._client, 'get', this._path, options)
+                       .use(popsicle.plugins.parse('json'))
+                       .then(response => {
+                           var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                           r["_"+response.status]=response.body; 
+                           observer.next(r);observer.complete()
+                    })
+                  })
+                }
+                /**
+                 * PUT on TenantProductsProductIdVariantsVariantIdMediaMediaId
+                 */
+                PUT(body:any /* Implicitly defined schemas not yet supported */, partial?:boolean, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_409":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                  return Observable.create((observer) => {
+                     var options = extend({query:{}, headers: {} }, opts)
+                     if (partial !== undefined && partial !== null) options.query['partial']=partial;
+                     options.body=body;
+                     this._client.request(this._client, 'put', this._path, options)
+                       .use(popsicle.plugins.parse('json'))
+                       .then(response => {
+                           var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                           r["_"+response.status]=response.body; 
+                           observer.next(r);observer.complete()
+                    })
+                  })
+                }
+                /**
+                 * DELETE on TenantProductsProductIdVariantsVariantIdMediaMediaId
+                 */
+                DELETE(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_204":any,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                  return Observable.create((observer) => {
+                     var options = extend({query:{}, headers: {} }, opts)
+                     this._client.request(this._client, 'delete', this._path, options)
+                       .use(popsicle.plugins.parse('json'))
+                       .then(response => {
+                           var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                           r["_"+response.status]=response.body; 
+                           observer.next(r);observer.complete()
+                    })
+                  })
+                }
+              }
+              export module TenantProductsProductIdVariantsVariantIdMediaMediaId { 
+                // createResource - TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit
+                export class TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit { 
+                  _client: any; _path: string;
+                  constructor(client, path) {
+                    this._client = client
+                    this._path = path
+                  }
+                  /**
+                   * POST on TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit
+                   */
+                  POST(opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_202":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_409":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+                    return Observable.create((observer) => {
+                       var options = extend({query:{}, headers: {} }, opts)
+                       this._client.request(this._client, 'post', this._path, options)
+                         .use(popsicle.plugins.parse('json'))
+                         .then(response => {
+                             var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                             r["_"+response.status]=response.body; 
+                             observer.next(r);observer.complete()
+                      })
+                    })
+                  }
+                }
+                export module TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit { 
+                }
+              }
+            }
+          }
+        }
       }
+    }
+    // createResource - TenantVariants
+    export class TenantVariants { 
+      _client: any; _path: string;
+      constructor(client, path) {
+        this._client = client
+        this._path = path
+      }
+      /**
+       * GET on TenantVariants
+       */
+      GET(fields?:string, id?:string, code?:string, expand?:string, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_404":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+        return Observable.create((observer) => {
+           var options = extend({query:{}, headers: {} }, opts)
+           if (fields !== undefined && fields !== null) options.query['fields']=fields;
+           if (id !== undefined && id !== null) options.query['id']=id;
+           if (code !== undefined && code !== null) options.query['code']=code;
+           if (expand !== undefined && expand !== null) options.query['expand']=expand;
+           this._client.request(this._client, 'get', this._path, options)
+             .use(popsicle.plugins.parse('json'))
+             .then(response => {
+                 var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                 r["_"+response.status]=response.body; 
+                 observer.next(r);observer.complete()
+          })
+        })
+      }
+    }
+    export module TenantVariants { 
+    }
+    // createResource - TenantSearch
+    export class TenantSearch { 
+      _client: any; _path: string;
+      constructor(client, path) {
+        this._client = client
+        this._path = path
+      }
+      /**
+       * POST on TenantSearch
+       */
+      POST(body:any /* Implicitly defined schemas not yet supported */, opts?:any):Observable<{headers:any,responseCode:number, bodyRaw:any,"_200":any  /* Implicitly defined schemas not yet supported */,"_400":any  /* Implicitly defined schemas not yet supported */,"_401":any  /* Implicitly defined schemas not yet supported */,"_403":any  /* Implicitly defined schemas not yet supported */,"_500":any  /* Implicitly defined schemas not yet supported */,"_503":any  /* Implicitly defined schemas not yet supported */}> {
+        return Observable.create((observer) => {
+           var options = extend({query:{}, headers: {} }, opts)
+           options.body=body;
+           this._client.request(this._client, 'post', this._path, options)
+             .use(popsicle.plugins.parse('json'))
+             .then(response => {
+                 var r={headers:response.headers,responseCode:response.status,bodyRaw:response.body};
+                 r["_"+response.status]=response.body; 
+                 observer.next(r);observer.complete()
+          })
+        })
+      }
+    }
+    export module TenantSearch { 
     }
   }
 }

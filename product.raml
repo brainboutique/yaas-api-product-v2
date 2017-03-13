@@ -1,8 +1,10 @@
 #%RAML 0.8
-title: hybris Products API
+title: YaasApiProductV2
 version: v2
 mediaType: application/json
-baseUri: https://api.beta.yaas.io/hybris/product/v2
+baseUri: https://api.yaas.io/hybris/product/v2
+securitySchemes:
+ - !include https://api.yaas.io/patterns/v1/security-schema-basic.yaml
 schemas:
   - errorMessage: |
       {
@@ -323,10 +325,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -421,10 +420,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -548,10 +544,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -738,10 +731,7 @@ schemas:
                               "type": "object",
                               "description": "value of property in specific language",
                               "additionalProperties": {
-                                  "type": [
-                                      "string",
-                                      "null"
-                                  ]
+                                  "type": "string"
                               }
                           },
                           {
@@ -975,10 +965,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -1106,10 +1093,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -1225,10 +1209,7 @@ schemas:
                                   "type": "object",
                                   "description": "value of property in specific language",
                                   "additionalProperties": {
-                                      "type": [
-                                          "string",
-                                          "null"
-                                      ]
+                                      "type": "string"
                                   }
                               },
                               {
@@ -1382,10 +1363,7 @@ schemas:
                               "type": "object",
                               "description": "value of property in specific language",
                               "additionalProperties": {
-                                  "type": [
-                                      "string",
-                                      "null"
-                                  ]
+                                  "type": "string"
                               }
                           },
                           {
@@ -1498,10 +1476,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -1549,10 +1524,7 @@ schemas:
                           "type": "object",
                           "description": "value of property in specific language",
                           "additionalProperties": {
-                              "type": [
-                                  "string",
-                                  "null"
-                              ]
+                              "type": "string"
                           }
                       },
                       {
@@ -1599,10 +1571,7 @@ schemas:
                           "description": "Optional query params for products",
                           "properties": {
                               "fields": {
-                                  "type": "array",
-                                  "items": {
-                                      "type": "string"
-                                  },
+                                  "type": "string",
                                   "description": "Optional projection for product"
                               }
                           }
@@ -1612,10 +1581,7 @@ schemas:
                           "description": "Optional query params for product variant",
                           "properties": {
                               "fields": {
-                                  "type": "array",
-                                  "items": {
-                                      "type": "string"
-                                  },
+                                  "type": "string",
                                   "description": "Optional projection for product variant"
                               },
                               "expand": {
@@ -1681,10 +1647,7 @@ schemas:
                                       "type": "object",
                                       "description": "value of property in specific language",
                                       "additionalProperties": {
-                                          "type": [
-                                              "string",
-                                              "null"
-                                          ]
+                                          "type": "string"
                                       }
                                   },
                                   {
@@ -1722,14 +1685,16 @@ schemas:
                                                   "options": {
                                                       "type": "object",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri"
                                                       }
                                                   },
                                                   "mixins": {
                                                       "type": "object",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri"
                                                       }
                                                   }
@@ -1799,7 +1764,8 @@ schemas:
                                               "tags": {
                                                   "type": "array",
                                                   "items": {
-                                                      "type": "string"
+   
+                                                   "type": "string"
                                                   },
                                                   "description": "Media file tags"
                                               },
@@ -1949,10 +1915,7 @@ schemas:
                                       "type": "object",
                                       "description": "value of property in specific language",
                                       "additionalProperties": {
-                                          "type": [
-                                              "string",
-                                              "null"
-                                          ]
+                                          "type": "string"
                                       }
                                   },
                                   {
@@ -2071,10 +2034,7 @@ schemas:
                   "type": "object",
                   "description": "value of property in specific language",
                   "additionalProperties": {
-                      "type": [
-                          "string",
-                          "null"
-                      ]
+                      "type": "string"
                   }
               },
               {
@@ -2333,7 +2293,7 @@ traits:
                 The link to the previous page (**prev**) is optional. If not present, the previous page is not available, as the current page is the first page of the result.
 
               example: |
-                <http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"
+                '<http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"'
               required: true
               repeat: true
               type: string
@@ -2922,7 +2882,7 @@ traits:
               The link to the previous page (**prev**) is optional. If not present, the previous page is not available, as the current page is the first page of the result.
 
             example: |
-              <http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"
+              '<http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"'
             required: true
             repeat: true
             type: string
@@ -3040,10 +3000,7 @@ traits:
                                       "type": "object",
                                       "description": "value of property in specific language",
                                       "additionalProperties": {
-                                          "type": [
-                                              "string",
-                                              "null"
-                                          ]
+                                          "type": "string"
                                       }
                                   },
                                   {
@@ -3628,10 +3585,7 @@ traits:
                               "type": "object",
                               "description": "value of property in specific language",
                               "additionalProperties": {
-                                  "type": [
-                                      "string",
-                                      "null"
-                                  ]
+                                  "type": "string"
                               }
                           },
                           {
@@ -4715,10 +4669,7 @@ traits:
                                     "type": "object",
                                     "description": "value of property in specific language",
                                     "additionalProperties": {
-                                        "type": [
-                                            "string",
-                                            "null"
-                                        ]
+                                        "type": "string"
                                     }
                                 },
                                 {
@@ -5311,10 +5262,7 @@ traits:
                                 "type": "object",
                                 "description": "value of property in specific language",
                                 "additionalProperties": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ]
+                                    "type": "string"
                                 }
                             },
                             {
@@ -9258,7 +9206,7 @@ traits:
                   The link to the previous page (**prev**) is optional. If not present, the previous page is not available, as the current page is the first page of the result.
 
                 example: |
-                  <http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"
+                  '<http://sample.com?pageNumber=2&pageSize=10>; rel="self", <http://sample.com?pageNumber=3&pageSize=10>; rel="next"'
                 required: true
                 repeat: true
                 type: string
@@ -9329,10 +9277,7 @@ traits:
                                           "type": "object",
                                           "description": "value of property in specific language",
                                           "additionalProperties": {
-                                              "type": [
-                                                  "string",
-                                                  "null"
-                                              ]
+                                                   "type": "string"
                                           }
                                       },
                                       {
@@ -9945,10 +9890,7 @@ traits:
                                   "type": "object",
                                   "description": "value of property in specific language",
                                   "additionalProperties": {
-                                      "type": [
-                                          "string",
-                                          "null"
-                                      ]
+                                                   "type": "string"
                                   }
                               },
                               {
@@ -10985,10 +10927,7 @@ traits:
                                         "type": "object",
                                         "description": "value of property in specific language",
                                         "additionalProperties": {
-                                            "type": [
-                                                "string",
-                                                "null"
-                                            ]
+                                                   "type": "string"
                                         }
                                     },
                                     {
@@ -11598,10 +11537,7 @@ traits:
                                     "type": "object",
                                     "description": "value of property in specific language",
                                     "additionalProperties": {
-                                        "type": [
-                                            "string",
-                                            "null"
-                                        ]
+                                                   "type": "string"
                                     }
                                 },
                                 {
@@ -15588,10 +15524,7 @@ traits:
                                       "type": "object",
                                       "description": "value of property in specific language",
                                       "additionalProperties": {
-                                          "type": [
-                                              "string",
-                                              "null"
-                                          ]
+                                                   "type": "string"
                                       }
                                   },
                                   {
@@ -16280,9 +16213,7 @@ traits:
                           "options",
                           "product.name"
                       ],
-                      "expand": [
-                          "product"
-                      ]
+                      "expand": "product"
                   }
               }
           }
@@ -16340,10 +16271,7 @@ traits:
                                               "type": "object",
                                               "description": "value of property in specific language",
                                               "additionalProperties": {
-                                                  "type": [
-                                                      "string",
-                                                      "null"
-                                                  ]
+                                                   "type": "string"
                                               }
                                           },
                                           {
@@ -16370,7 +16298,8 @@ traits:
                                                   "mixins": {
                                                       "type": "object",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri"
                                                       }
                                                   },
@@ -16381,14 +16310,16 @@ traits:
                                                           "options": {
                                                               "type": "object",
                                                               "additionalProperties": {
-                                                                  "type": "string",
+               
+                                                   "type": "string",
                                                                   "format": "uri"
                                                               }
                                                           },
                                                           "mixins": {
                                                               "type": "object",
                                                               "additionalProperties": {
-                                                                  "type": "string",
+               
+                                                   "type": "string",
                                                                   "format": "uri"
                                                               }
                                                           }
@@ -16398,11 +16329,13 @@ traits:
                                                       "type": "number"
                                                   },
                                                   "createdAt": {
-                                                      "type": "string",
+   
+                                                   "type": "string",
                                                       "description": "ISO 8601 format date in which the product was created."
                                                   },
                                                   "modifiedAt": {
-                                                      "type": "string",
+   
+                                                   "type": "string",
                                                       "description": "ISO 8601 format date in which the product was modified."
                                                   }
                                               }
@@ -16432,7 +16365,8 @@ traits:
                                               "title": "localized",
                                               "oneOf": [
                                                   {
-                                                      "type": "string",
+   
+                                                   "type": "string",
                                                       "minLength": 1,
                                                       "description": "value of property in default language"
                                                   },
@@ -16440,7 +16374,8 @@ traits:
                                                       "type": "object",
                                                       "description": "value of property in specific language",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "minLength": 1
                                                       }
                                                   }
@@ -16452,17 +16387,15 @@ traits:
                                               "title": "localized",
                                               "oneOf": [
                                                   {
-                                                      "type": "string",
+   
+                                                   "type": "string",
                                                       "description": "value of property in default language"
                                                   },
                                                   {
                                                       "type": "object",
                                                       "description": "value of property in specific language",
                                                       "additionalProperties": {
-                                                          "type": [
-                                                              "string",
-                                                              "null"
-                                                          ]
+                                                   "type": "string"
                                                       }
                                                   },
                                                   {
@@ -16482,32 +16415,38 @@ traits:
                                                   "description": "Media file metadata",
                                                   "properties": {
                                                       "id": {
-                                                          "type": "string"
+       
+                                                   "type": "string"
                                                       },
                                                       "yrn": {
                                                           "$schema": "http://json-schema.org/draft-04/schema#",
                                                           "title": "YRN attribute",
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri",
                                                           "description": "Contains the YaaS Resource Name (YRN) of a specific resource on base of the 'yaas' URN scheme"
                                                       },
                                                       "mediaId": {
-                                                          "type": "string"
+       
+                                                   "type": "string"
                                                       },
                                                       "url": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri",
                                                           "description": "URL of file content"
                                                       },
                                                       "tags": {
                                                           "type": "array",
                                                           "items": {
-                                                              "type": "string"
+           
+                                                   "type": "string"
                                                           },
                                                           "description": "Media file tags"
                                                       },
                                                       "contentType": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "description": "MIME type of the media file"
                                                       },
                                                       "stored": {
@@ -16515,15 +16454,18 @@ traits:
                                                           "description": "If true, the media file is stored in the service. Otherwise the service only stores external URL of the file and metadata."
                                                       },
                                                       "createdAt": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "description": "Date of media metadata creation."
                                                       },
                                                       "commitLink": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "description": "Contains link which is used when user triggers media commit operation. This link is not returned to user as product service internally triggers the commit"
                                                       },
                                                       "uploadLink": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "description": "Contains link on which user should send media for upload before he triggers the commit operation"
                                                       },
                                                       "uncommittedMedia": {
@@ -16574,14 +16516,16 @@ traits:
                                                   "options": {
                                                       "type": "object",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri"
                                                       }
                                                   },
                                                   "mixins": {
                                                       "type": "object",
                                                       "additionalProperties": {
-                                                          "type": "string",
+       
+                                                   "type": "string",
                                                           "format": "uri"
                                                       }
                                                   }
@@ -16652,10 +16596,7 @@ traits:
                                               "type": "object",
                                               "description": "value of property in specific language",
                                               "additionalProperties": {
-                                                  "type": [
-                                                      "string",
-                                                      "null"
-                                                  ]
+                                                   "type": "string"
                                               }
                                           },
                                           {
@@ -16695,7 +16636,8 @@ traits:
                                               "tags": {
                                                   "type": "array",
                                                   "items": {
-                                                      "type": "string"
+   
+                                                   "type": "string"
                                                   },
                                                   "description": "Media file tags"
                                               },

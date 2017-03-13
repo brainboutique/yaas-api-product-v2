@@ -39,7 +39,7 @@ function request (client, method, path, opts) {
 function Client (options) {
   this._path = ''
   this._options = extend({
-    baseUri: 'https://api.eu.yaas.io/hybris/product/v2',
+    baseUri: 'https://api.yaas.io/hybris/product/v2',
     baseUriParameters: {}
   }, options)
 
@@ -64,6 +64,10 @@ function Tenant (client, path) {
 // ### ctr 2
 // ### createProtoResources
   this.products = new TenantProducts(this._client, this._path + '/products')
+// ### createProtoResources
+  this.variants = new TenantVariants(this._client, this._path + '/variants')
+// ### createProtoResources
+  this.search = new TenantSearch(this._client, this._path + '/search')
 }
 function TenantProducts (client, path) {
   this._client = client
@@ -89,6 +93,8 @@ function TenantProductsProductId (client, path) {
 // ### ctr 2
 // ### createProtoResources
   this.media = new TenantProductsProductIdMedia(this._client, this._path + '/media')
+// ### createProtoResources
+  this.variants = new TenantProductsProductIdVariants(this._client, this._path + '/variants')
 }
 TenantProductsProductId.prototype.get = function (query, opts) {
   var options = extend({ query: query, headers: {} }, opts)
@@ -141,6 +147,103 @@ function TenantProductsProductIdMediaMediaIdCommit (client, path) {
 // ### ctr 2
 }
 TenantProductsProductIdMediaMediaIdCommit.prototype.post = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'post', this._path, options)
+}
+function TenantProductsProductIdVariants (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+}
+TenantProductsProductIdVariants.prototype.variantId = function (uriParams) { return new TenantProductsProductIdVariantsVariantId(this._client, this._path + template('/{variantId}', extend({}, uriParams))) }
+TenantProductsProductIdVariants.prototype.get = function (query, opts) {
+  var options = extend({ query: query, headers: {} }, opts)
+  return request(this._client, 'get', this._path, options)
+}
+TenantProductsProductIdVariants.prototype.post = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'post', this._path, options)
+}
+TenantProductsProductIdVariants.prototype.delete = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'delete', this._path, options)
+}
+function TenantProductsProductIdVariantsVariantId (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+// ### createProtoResources
+  this.media = new TenantProductsProductIdVariantsVariantIdMedia(this._client, this._path + '/media')
+}
+TenantProductsProductIdVariantsVariantId.prototype.get = function (query, opts) {
+  var options = extend({ query: query, headers: {} }, opts)
+  return request(this._client, 'get', this._path, options)
+}
+TenantProductsProductIdVariantsVariantId.prototype.put = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'put', this._path, options)
+}
+TenantProductsProductIdVariantsVariantId.prototype.delete = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'delete', this._path, options)
+}
+function TenantProductsProductIdVariantsVariantIdMedia (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+}
+TenantProductsProductIdVariantsVariantIdMedia.prototype.mediaId = function (uriParams) { return new TenantProductsProductIdVariantsVariantIdMediaMediaId(this._client, this._path + template('/{mediaId}', extend({}, uriParams))) }
+TenantProductsProductIdVariantsVariantIdMedia.prototype.post = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'post', this._path, options)
+}
+TenantProductsProductIdVariantsVariantIdMedia.prototype.get = function (query, opts) {
+  var options = extend({ query: query, headers: {} }, opts)
+  return request(this._client, 'get', this._path, options)
+}
+function TenantProductsProductIdVariantsVariantIdMediaMediaId (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+// ### createProtoResources
+  this.commit = new TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit(this._client, this._path + '/commit')
+}
+TenantProductsProductIdVariantsVariantIdMediaMediaId.prototype.get = function (query, opts) {
+  var options = extend({ query: query, headers: {} }, opts)
+  return request(this._client, 'get', this._path, options)
+}
+TenantProductsProductIdVariantsVariantIdMediaMediaId.prototype.put = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'put', this._path, options)
+}
+TenantProductsProductIdVariantsVariantIdMediaMediaId.prototype.delete = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'delete', this._path, options)
+}
+function TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+}
+TenantProductsProductIdVariantsVariantIdMediaMediaIdCommit.prototype.post = function (body, opts) {
+  var options = extend({ body: body, headers: {} }, opts)
+  return request(this._client, 'post', this._path, options)
+}
+function TenantVariants (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+}
+TenantVariants.prototype.get = function (query, opts) {
+  var options = extend({ query: query, headers: {} }, opts)
+  return request(this._client, 'get', this._path, options)
+}
+function TenantSearch (client, path) {
+  this._client = client
+  this._path = path
+// ### ctr 2
+}
+TenantSearch.prototype.post = function (body, opts) {
   var options = extend({ body: body, headers: {} }, opts)
   return request(this._client, 'post', this._path, options)
 }
